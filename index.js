@@ -253,7 +253,11 @@ function readEnvConfig() {
           if (!configItem[subKey]) { configItem[subKey] = {}; }
           configItem = configItem[subKey];
         } else {
-          configItem[subKey] = JSON.parse(value);
+          try {
+              configItem[subKey] = JSON.parse(value);
+          } catch(e) {
+              configItem[subKey] = value;
+          }
         }
       }
     }
